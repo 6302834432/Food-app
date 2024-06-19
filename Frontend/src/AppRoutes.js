@@ -6,6 +6,7 @@ import FoodPage from './Pages/FoodPage/FoodPage'
 import Cart from './Components/Cart/Cart'
 import AuthRoute from './Components/AuthRoute/AuthRoute'
 import Checkoutpage from './Pages/Checkout/Checkoutpage'
+import Signup from './Pages/Signup/Signup'
 function AppRoutes() {
   return (
     
@@ -15,7 +16,7 @@ function AppRoutes() {
     <Route path="/tag/:tag" element={<Home />} />
     <Route path='/foods/:id'element={<FoodPage/>}/>
     <Route path='/cart' element={<Cart/>}/>
-
+<Route path='/register' element={<Signup/>}/>
     <Route path='/login' element={<Login/>} />
     <Route path='/checkout' element={<AuthRoute>
       <Checkoutpage/>

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import '../Login/Login.css'
 import Title from '../../Components/Title/Title';
 import Input from '../../Components/Input/Input';
@@ -57,8 +57,15 @@ export default function LoginPage() {
           />
 
           <Button type="submit" text="Login" />
+          <div className='register'>
+            New user ? &nbsp;
+            <Link to={`/register?${returnUrl?'returnUrl'+returnUrl:""}`}  style={{textDecoration:'none'}}>
+            Register Here</Link>
+          </div>
+
         </form>
       </div>
+
     </div>
   );
 }
