@@ -15,9 +15,8 @@ const App = () => {
       <Loading/>
         <Header />
       <AppRoutes/>
-      
-
-    </div>
-  )
+      {}
+      </div>
+)
 }
 export default App;
