@@ -12,7 +12,7 @@ const Item = ({foods}) => {
             foods.map(food=>(
                 <li key={food.id}>
                     <Link to={`/foods/${food.id}`} style={{textDecoration:'none'}}>
-                    <img className='item-img' src={`/foods/${food.imageUrl}`}alt={food.name}></img>
+                    <img className='item-img' src={`${food.imageUrl}`}alt={food.name}></img>
                     
                    
                     <div className='item-content'>

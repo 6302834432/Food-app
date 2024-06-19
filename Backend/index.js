@@ -3,9 +3,11 @@ const cors =require('cors')
 const cookie=require ('cookie')
 const mongoose=require  ('mongoose')
 const jwt=require('jsonwebtoken')
+const dotenv=require('dotenv')
 const morgan =require('morgan')
 const { urlencoded } = require('body-parser')
-const { ConnectToDb } = require('./src/Model/DbConnection')
+const { dbconnect } = require('./src/config/databaseconfig')
+dotenv.config()
 const  app=express()
 app.use(morgan('dev'))
 app.use(express.json())
@@ -13,7 +15,7 @@ app.use(cors({
     credintials:true,
     origin:['http://localhost:3000'],
 }));
-ConnectToDb()
+dbconnect()
 
 //routes
 app.use('/api/foods',require('./src/Routes/Food_router'))
