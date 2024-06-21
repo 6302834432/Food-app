@@ -22,12 +22,12 @@ export const getAllByTag = async tag => {
 };
 
 export const getById = async foodId => {
-  const { data } = await axios.get('http://localhost:8000/api/foods/' + foodId);
+  const { data } = await axios.get(`http://localhost:8000/api/foods/${foodId}`);
   return data;
 };
 
 export async function deleteById(foodId) {
-  await axios.delete('http://localhost:8000/api/foods/' + foodId);
+  await axios.delete(`http://localhost:8000/api/foods/${foodId}`);
 }
 
 export async function update(food) {

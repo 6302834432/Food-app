@@ -37,7 +37,7 @@ async function seedFoods() {
     console.log('Foods seed is already done!');
     return;
   }
-
+  
   for (const food of sample_foods) {
     food.imageUrl = `/foods/${food.imageUrl}`;
     await FoodModel.create(food);

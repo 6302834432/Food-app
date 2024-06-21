@@ -20,11 +20,11 @@ const Header = () => {
                     {
                         user?
                         <li className={classes.menu_container}>
-                            <Link to ='/profile' style={{textDecoration:'none'}}>{user}</Link>
+                            <Link to ='/profile' style={{textDecoration:'none'}}>{user.name}</Link>
                             <div className={classes.menu}>
                                 <Link to='/profile' style={{textDecoration:'none'}}>Profile</Link>
                                 <Link to='/order' style={{textDecoration:'none'}}> Order</Link>
-                                <a onClick={logout}>Logout</a>
+                                <a onClick={logout} >Logout</a>
                         </div>
 
                         </li>

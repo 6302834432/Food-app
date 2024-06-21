@@ -17,19 +17,14 @@ const FoodPage = () => {
         navigate('/cart')
     }
     useEffect(() => {
-        
-        getById(id).then(data => {
-            if (Array.isArray(data) && data.length > 0) {
-                setFood(data[0]) 
-            } 
-        })
-    }, [id])
+        getById(id).then(setFood);
+      }, [id]);
     return (
         <>
             {!food ?(<NotFound message="Food Not Found" LinkText="Back to HomePage"></NotFound>):
             
            ( <div className='food-container'>
-                <img src={`/foods/${food.imageUrl}`} className='food-image' alt={food.name} />
+                <img src={`${food.imageUrl}`} className='food-image' alt={food.name} />
                 <div className='food-details'>
                     <div className='food-header'>
                         <span className='food-name'>{food.name}</span>

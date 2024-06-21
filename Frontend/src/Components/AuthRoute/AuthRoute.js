@@ -1,14 +1,14 @@
-import React, { Children } from 'react'
+import React, {  useContext } from 'react'
 import { Navigate, useLocation } from 'react-router-dom'
-import { useAuth } from '../../Hooks/UseAuthHook.js'
+import { AuthContext } from '../../Hooks/UseAuthHook.js'
 
 const AuthRoute = ({children}) => {
     const location=useLocation()
-    const {user}=localStorage.getItem('user-name')
+    const {user}=useContext(AuthContext)
   return  user ?(
     children 
   ):(
-    <Navigate to={`/login?retrunUrl=${location.pathname}`} replace={{}}/>
+    <Navigate to={`/login?retrunUrl=${location.pathname}`} replace/>
   )
 }
 

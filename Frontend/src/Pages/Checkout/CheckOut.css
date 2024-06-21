@@ -1,0 +1,33 @@
+.checkout-container {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .checkout-content {
+    width: 35rem;
+    margin: 0 3rem 0 0;
+  }
+  
+  .checkout-content,
+  .checkout-inputs {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .checkout-inputs {
+    width: 100%;
+  }
+  
+  .checkout-buttons_container {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: center;
+    
+
+  }
+  .checkout-buttons {
+    margin: 2rem;
+    width: 35rem;
+  }

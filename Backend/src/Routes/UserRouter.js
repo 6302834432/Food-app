@@ -5,7 +5,6 @@ const{ BAD_REQUEST}=require('../constants/httpStatus.js')
 const router =express.Router()
 const authmiddleware=require('../middlewares/authmiddleware.js')
 const adminMid=require('../middlewares/adminmiddleware.js')
-const PASSWORD_HASH_SALT_ROUNDS = 10;
 const {UserModel}=require('../Model/Usermodel.js')
 const handler=require('express-async-handler')
 
@@ -14,8 +13,8 @@ router.post(
   handler(async (req, res) => {
     const { email, password } = req.body;
     const user = await UserModel.findOne({ email });
-
-    if (user && (await bcrypt.compare(password, user.password))) {
+    const passCompare=user.password===password
+    if (user && passCompare) {
       res.send(generateTokenResponse(user));
       return;
     }
@@ -36,15 +35,11 @@ router.post(
       return;
     }
 
-    const hashedPassword = await bcrypt.hash(
-      password,
-      PASSWORD_HASH_SALT_ROUNDS
-    );
 
     const newUser = {
       name,
       email: email.toLowerCase(),
-      password: hashedPassword,
+      password: password,
       address,
     };
 

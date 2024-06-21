@@ -20,6 +20,7 @@ dbconnect()
 //routes
 app.use('/api/foods',require('./src/Routes/Food_router'))
 app.use('/api/users',require('./src/Routes/UserRouter'))
+app.use('/api/orders',require('./src/Routes/OrderRouter'))
 
 
 app.listen(8000, (err) => {

@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer } from 'react';
 import { getAll, getAllByTag, getAllTags, search } from '../../Services/Foodservice';
 import Item from '../../Components/Item/Item';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Search from '../../Components/Search/Search';
 import Tags from '../../Components/Tags/Tags';
 import NotFound from '../../Components/NotFound/NotFound';
