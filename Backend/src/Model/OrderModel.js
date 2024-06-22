@@ -1,6 +1,6 @@
 const mongoose=require('mongoose')
 const {FoodModel}=require('../Model/FoodModel')
-const OrderStatus=require('../constants/OrderStatus')
+const {OrderStatus}=require('../constants/OrderStatus')
 const LatLngSchema= new mongoose.Schema({
     lat :{
         type :String,

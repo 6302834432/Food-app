@@ -11,3 +11,21 @@ export const createorder = async order  => {
         
     }
 }
+export const getorderforCurrentUser=async()=>{
+    try {
+        const {data} =await axios.get('http://localhost:8000/api/orders/newOrderForCurrentUser')
+        console.log('data',data)
+        return data;
+    } catch (error) {
+        console.log(error)
+    }
+}
+export const pay =async(paymentId)=>{
+    try {
+        const {data}=await axios.put('http://localhost:8000/api/orders/pay',{paymentId})
+        return data;
+        
+    } catch (error) {
+        
+    }
+}
