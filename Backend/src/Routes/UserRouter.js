@@ -3,10 +3,12 @@ const express=require('express')
 const jwt =require('jsonwebtoken')
 const{ BAD_REQUEST}=require('../constants/httpStatus.js')
 const router =express.Router()
-const authmiddleware=require('../middlewares/authmiddleware.js')
-const adminMid=require('../middlewares/adminmiddleware.js')
+const {authmiddleware}=require('../middlewares/authmiddleware.js')
+const {adminMid}=require('../middlewares/adminmiddleware.js')
 const {UserModel}=require('../Model/Usermodel.js')
 const handler=require('express-async-handler')
+const { UpdateProfileController } = require('../Controllers/UserController.js')
+const {bcrypt}=require('bcrypt')
 
 router.post(
   '/login',
@@ -48,46 +50,34 @@ router.post(
   })
 );
 
-// router.put(
-//   '/updateProfile',
-//   authmiddleware,
-//   handler(async (req, res) => {
-//     const { name, address } = req.body;
-//     const user = await UserModel.findByIdAndUpdate(
-//       req.user.id,
-//       { name, address },
-//       { new: true }
-//     );
 
-//     res.send(generateTokenResponse(user));
-//   })
-// );
 
-// router.put(
-//   '/changePassword',
-//   authmiddleware,
-//   handler(async (req, res) => {
-//     const { currentPassword, newPassword } = req.body;
-//     const user = await UserModel.findById(req.user.id);
+router.put('/updateProfile',authmiddleware,UpdateProfileController) 
+router.put(
+  '/changePassword',
+  authmiddleware,
+  handler(async (req, res) => {
+    const { currentPassword, newPassword } = req.body;
+    const user = await UserModel.findById(req.user.id);
 
-//     if (!user) {
-//       res.status(BAD_REQUEST).send('Change Password Failed!');
-//       return;
-//     }
+    if (!user) {
+      res.status(BAD_REQUEST).send('Change Password Failed!');
+      return;
+    }
 
-//     const equal = await bcrypt.compare(currentPassword, user.password);
+    const equal = await bcrypt.compare(currentPassword, user.password);
 
-//     if (!equal) {
-//       res.status(BAD_REQUEST).send('Current Password Is Not Correct!');
-//       return;
-//     }
+    if (!equal) {
+      res.status(BAD_REQUEST).send('Current Password Is Not Correct!');
+      return;
+    }
 
-//     user.password = await bcrypt.hash(newPassword, PASSWORD_HASH_SALT_ROUNDS);
-//     await user.save();
+    user.password = await bcrypt.hash(newPassword, PASSWORD_HASH_SALT_ROUNDS);
+    await user.save();
 
-//     res.send(user);
-//   })
-// );
+    res.send(user);
+  })
+);
 
 // router.get(
 //   '/getall/:searchTerm?',

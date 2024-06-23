@@ -29,3 +29,10 @@ export const pay =async(paymentId)=>{
         
     }
 }
+
+export const OrderTarckById =async orderId => {
+  const {data}=await axios.get('http://localhost:8000/api/orders/tarck/'+orderId)
+  return data;
+
+}
+

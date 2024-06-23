@@ -1,5 +1,5 @@
 const jwt=require('jsonwebtoken')
-const UNAUTHORIZED=404;
+const UNAUTHORIZED=401;
 
  const authmiddleware= (req, res, next) => {
   const token = req.headers.access_token;
@@ -9,7 +9,7 @@ const UNAUTHORIZED=404;
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.user = decoded;
   } catch (error) {
-    res.status(UNAUTHORIZED).send();
+    return res.status(UNAUTHORIZED).send();
   }
 
   return next();

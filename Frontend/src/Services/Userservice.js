@@ -32,15 +32,25 @@ export const logout = () => {
   localStorage.removeItem('user');
 };
 
-// export const updateProfile = async user => {
-//   const { data } = await axios.put('/api/users/updateProfile', user);
-//   localStorage.setItem('user', JSON.stringify(data));
-//   return data;
-// };
 
-// export const changePassword = async passwords => {
-//   await axios.put('/api/users/changePassword', passwords);
-// };
+export const updateProfile = async (user) => {
+  try {
+    const response = await axios.put('http://localhost:8000/api/users/updateProfile', user);
+    
+    if (response.data.success) {
+      console.log(response.data.data);
+    } else {
+      console.error('Profile update failed:', response.data);
+    }
+  } catch (error) {
+    console.error('Error updating profile:', error);
+  }
+};
+
+
+export const changePassword = async passwords => {
+  await axios.put('http://localhost:8000/api/users/changePassword', passwords);
+};
 
 // export const getAll = async searchTerm => {
 //   const { data } = await axios.get('/api/users/getAll/' + (searchTerm ?? ''));
