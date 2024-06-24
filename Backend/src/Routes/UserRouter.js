@@ -8,14 +8,15 @@ const {adminMid}=require('../middlewares/adminmiddleware.js')
 const {UserModel}=require('../Model/Usermodel.js')
 const handler=require('express-async-handler')
 const { UpdateProfileController } = require('../Controllers/UserController.js')
-const {bcrypt}=require('bcrypt')
+const bcrypt=require('bcrypt')
+const PASSWORD_HASH_SALT_ROUNDS = 10;
 
 router.post(
   '/login',
   handler(async (req, res) => {
     const { email, password } = req.body;
     const user = await UserModel.findOne({ email });
-    const passCompare=user.password===password
+    const passCompare=bcrypt.compare(password,user.password)
     if (user && passCompare) {
       res.send(generateTokenResponse(user));
       return;
@@ -24,6 +25,7 @@ router.post(
     res.status(BAD_REQUEST).send('Username or password is invalid');
   })
 );
+
 
 router.post(
   '/register',
@@ -37,11 +39,15 @@ router.post(
       return;
     }
 
+    const hashedPassword = await bcrypt.hash(
+      password,
+      PASSWORD_HASH_SALT_ROUNDS
+    );
 
     const newUser = {
       name,
       email: email.toLowerCase(),
-      password: password,
+      password: hashedPassword,
       address,
     };
 
@@ -52,12 +58,14 @@ router.post(
 
 
 
+
 router.put('/updateProfile',authmiddleware,UpdateProfileController) 
 router.put(
   '/changePassword',
   authmiddleware,
   handler(async (req, res) => {
     const { currentPassword, newPassword } = req.body;
+    console.log(currentPassword,newPassword)
     const user = await UserModel.findById(req.user.id);
 
     if (!user) {
@@ -66,7 +74,7 @@ router.put(
     }
 
     const equal = await bcrypt.compare(currentPassword, user.password);
-
+    // const equal=null;
     if (!equal) {
       res.status(BAD_REQUEST).send('Current Password Is Not Correct!');
       return;

@@ -6,17 +6,17 @@ export const getUser = () =>
     : null;
 
     export const login = async (email, password) => {
+      console.log(email,password)
       try {
         const response = await axios.post('http://localhost:8000/api/users/login', { email, password });
         const data = response.data;
     
         localStorage.setItem('user', JSON.stringify(data));
-        window.location.replace('/');
         return data;
       } catch (err) {
         const errorMessage = err.response?.data || 'An error occurred during login';
-        // toast.error(errorMessage);
         throw new Error(errorMessage); 
+
       }
     };
 
@@ -24,7 +24,6 @@ export const register = async registerData => {
   const response = await axios.post('http://localhost:8000/api/users/register', registerData);
   const data=response.data
   localStorage.setItem('user', JSON.stringify(data));
-  window.replace('/')
   return response.data;
 };
 
