@@ -35,4 +35,11 @@ export const OrderTarckById =async orderId => {
   return data;
 
 }
-
+export const getAll=async(state)=>{
+    const {data}=await axios.get(`http://localhost:8000/api/orders/${state ?? ''}`)
+    return data;
+}
+export const getAllStatus = async () => {
+    const {data} = await axios.get('http://localhost:8000/api/test/allstatus');
+    return data;
+  };

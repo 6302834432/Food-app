@@ -10,6 +10,7 @@ import Signup from './Pages/Signup/Signup'
 import Payment from './Components/Payment/Payment'
 import OrderTrack from './Pages/OrderTrack/OrderTrack'
 import Profile from './Components/Profile/Profile'
+import OrdersPage from './Pages/OrdersPage/OrdersPage'
 function AppRoutes() {
   return (
 
@@ -25,6 +26,7 @@ function AppRoutes() {
       <Route path='/profile' element={<AuthRoute><Profile/></AuthRoute>} />
       <Route path='/payment' element={<AuthRoute><Payment/></AuthRoute>} />
       <Route path='/track/:orderId' element={<AuthRoute><OrderTrack/></AuthRoute>} />
+      <Route path='/orders/:filter?' element={<AuthRoute><OrdersPage/></AuthRoute>} />
     </Routes>
   )
 }

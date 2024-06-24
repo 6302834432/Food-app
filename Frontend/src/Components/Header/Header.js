@@ -23,7 +23,7 @@ const Header = () => {
                             <Link to ='/profile' style={{textDecoration:'none'}}>{user.name}</Link>
                             <div className={classes.menu}>
                                 <Link to='/profile' style={{textDecoration:'none'}}>Profile</Link>
-                                <Link to='/order' style={{textDecoration:'none'}}> Orders</Link>
+                                <Link to='/orders' style={{textDecoration:'none'}}> Orders</Link>
                                 <a onClick={logout} >Logout</a>
                         </div>
 

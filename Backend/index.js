@@ -7,6 +7,7 @@ const dotenv=require('dotenv')
 const morgan =require('morgan')
 const { urlencoded } = require('body-parser')
 const { dbconnect } = require('./src/config/databaseconfig')
+const { OrderStatus } = require('./src/constants/OrderStatus')
 dotenv.config()
 const  app=express()
 app.use(morgan('dev'))
@@ -21,6 +22,7 @@ dbconnect()
 app.use('/api/foods',require('./src/Routes/Food_router'))
 app.use('/api/users',require('./src/Routes/UserRouter'))
 app.use('/api/orders',require('./src/Routes/OrderRouter'))
+app.use('/api/test',require('./src/Routes/testRoute'))
 
 
 app.listen(8000, (err) => {

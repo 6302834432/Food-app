@@ -6,6 +6,8 @@ const { OrderModel } = require('../Model/OrderModel');
 const { OrderStatus } = require('../constants/OrderStatus');
 const { authmiddleware } = require('../../src/middlewares/authmiddleware');
 const { UserModel } = require('../Model/Usermodel');
+const { getByStatusController, HandleOrderStatus } = require('../Controllers/OrderController');
+const { HandleLoginuser } = require('../Controllers/UserController');
 
 router.use(authmiddleware);
 
@@ -73,5 +75,14 @@ router.get(
     return res.send(order);
   })
 );
+
+
+
+router.get('/:status?',getByStatusController)
+
+router.get('/allStatus',HandleOrderStatus)
+
+
+
 
 module.exports = router;
