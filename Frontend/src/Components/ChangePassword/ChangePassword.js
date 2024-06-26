@@ -20,7 +20,9 @@ export default function ChangePassword() {
   };
 
   return (
-    <div>
+    
+      <div className='container'>
+      <div className='details'>
       <Title title="Change Password" />
       <form onSubmit={handleSubmit(submit)}>
         <Input
@@ -41,8 +43,8 @@ export default function ChangePassword() {
           })}
           error={errors.newPassword}
         />
-
         <Input
+        
           type="password"
           label="Confirm Password"
           {...register('confirmNewPassword', {
@@ -54,9 +56,11 @@ export default function ChangePassword() {
           })}
           error={errors.confirmNewPassword}
         />
+        
 
         <Button type="submit" text="Change" />
       </form>
+      </div>
     </div>
   );
 }

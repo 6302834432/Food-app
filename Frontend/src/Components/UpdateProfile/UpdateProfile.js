@@ -1,13 +1,11 @@
-import React, { useContext } from 'react'
-import '../Profile/Profile.css'
-import { useForm } from 'react-hook-form'
-import { AuthContext } from '../../Hooks/UseAuthHook'
-import { Button } from '../Button/Button'
-import ChangePassword from '../ChangePassword/ChangePassword'
+import React from 'react'
 import Input from '../Input/Input'
+import { Button } from '../Button/Button'
+import { useForm } from 'react-hook-form'
 import Title from '../Title/Title'
-
-const Profile = () => {
+import { useContext } from 'react'
+import { AuthContext } from '../../Hooks/UseAuthHook'
+const UpdateProfile = () => {
     const {
         handleSubmit,
         register,
@@ -46,10 +44,10 @@ const Profile = () => {
           <Button type="submit" text="Update" backgroundColor="#009e84" />
         </form>
 
-        <ChangePassword />
       </div>
     </div>
-  );
+    
+)
 }
 
-export default Profile
+export default UpdateProfile

@@ -57,11 +57,14 @@ export default function LoginPage() {
           />
 
           <Button type='submit' text="Login" />
+          
           <div className='register'>
-            New 
-             ? &nbsp;
+            <Link to='/forgotpassword'  style={{textDecoration:"none"}}> <span>Forgot Password    </span></Link>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+           <span>
             <Link to={`/register?${returnUrl?'returnUrl'+returnUrl:""}`}  style={{textDecoration:'none'}}>
             Register Here</Link>
+            </span>
           </div>
 
         </form>

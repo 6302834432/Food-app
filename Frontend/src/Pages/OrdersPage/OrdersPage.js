@@ -6,7 +6,6 @@ import DateTime from '../../Components/DateTime/DateTIme'
 import Price from '../../Components/Price/Price'
 import classes from '../OrdersPage/OrderPage.module.css'
 import NotFound from '../../Components/NotFound/NotFound'
-
 const initialState = { orders: [] }
 const reducer = (state, action) => {
     const { type, payload } = action;
@@ -47,7 +46,7 @@ export default function OrdersPage() {
             {allStatus.map(state => (
               <Link
                 key={state}
-                className={state == filter ? classes.selected : ''}
+                className={state === filter ? classes.selected : ''}
                 to={`/orders/${state}`}
               >
                 {state}
@@ -75,7 +74,8 @@ export default function OrdersPage() {
               </div>
               <div className={classes.items}>
                 {order.items.map(item => (
-                  <Link key={item.food.id} to={`/food/${item.food.id}`}>
+                  <Link key={item.food.id} to={`/foods/${item.food.id}`}>
+
                     <img src={item.food.imageUrl} alt={item.food.name} />
                   </Link>
                 ))}

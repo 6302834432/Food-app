@@ -6,7 +6,7 @@ const { OrderModel } = require('../Model/OrderModel');
 const { OrderStatus } = require('../constants/OrderStatus');
 const { authmiddleware } = require('../../src/middlewares/authmiddleware');
 const { UserModel } = require('../Model/Usermodel');
-const { getByStatusController, HandleOrderStatus } = require('../Controllers/OrderController');
+const { getByStatusController, HandleOrderStatus, HandleOrderTracker } = require('../Controllers/OrderController');
 const { HandleLoginuser } = require('../Controllers/UserController');
 
 router.use(authmiddleware);
@@ -54,27 +54,8 @@ router.get(
 );
 
 router.get(
-  '/track/:orderId',
-  handler(async (req, res) => {
-    const { orderId } = req.params;
-    const user = await UserModel.findById(req.user.id);
-
-    const filter = {
-      _id: orderId,
-    };
-
-    if (!user.isAdmin) {
-      filter.user = user._id;
-    }
-
-    const order = await OrderModel.findOne(filter);
-    console.log(orderId)
-
-    if (!order) return res.status(UNAUTHORIZED).send(); // Use return here
-
-    return res.send(order);
-  })
-);
+  '/track/:orderId'
+,authmiddleware,HandleOrderTracker)
 
 
 

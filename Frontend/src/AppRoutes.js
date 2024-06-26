@@ -9,8 +9,9 @@ import Checkoutpage from './Pages/Checkout/Checkoutpage'
 import Signup from './Pages/Signup/Signup'
 import Payment from './Components/Payment/Payment'
 import OrderTrack from './Pages/OrderTrack/OrderTrack'
-import Profile from './Components/Profile/Profile'
 import OrdersPage from './Pages/OrdersPage/OrdersPage'
+import ChangePassword from './Components/ChangePassword/ChangePassword'
+import UpdateProfile from './Components/UpdateProfile/UpdateProfile'
 function AppRoutes() {
   return (
 
@@ -19,12 +20,13 @@ function AppRoutes() {
       <Route path='/search/:searchTerm' element={<Home />} />
       <Route path="/tag/:tag" element={<Home />} />
       <Route path='/foods/:id' element={<FoodPage />} />
+      <Route path='/forgotpassword' element={<ChangePassword/>}/>
       <Route path='/cart' element={<Cart />} />
       <Route path='/register' element={<Signup />} />
       <Route path='/login' element={<Login />} />
       <Route path='/checkout' element={<AuthRoute><Checkoutpage /></AuthRoute>} />
-      <Route path='/profile' element={<AuthRoute><Profile/></AuthRoute>} />
       <Route path='/payment' element={<AuthRoute><Payment/></AuthRoute>} />
+      <Route path='/profile' element={<AuthRoute><UpdateProfile/></AuthRoute>}/>
       <Route path='/track/:orderId' element={<AuthRoute><OrderTrack/></AuthRoute>} />
       <Route path='/orders/:filter?' element={<AuthRoute><OrdersPage/></AuthRoute>} />
     </Routes>
