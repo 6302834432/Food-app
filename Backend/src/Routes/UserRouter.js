@@ -61,7 +61,7 @@ router.post(
 
 router.put('/updateProfile',authmiddleware,UpdateProfileController) 
 router.put(
-  '/changePassword',
+  '/forgotpassword',
   authmiddleware,
   handler(async (req, res) => {
     const { currentPassword, newPassword } = req.body;

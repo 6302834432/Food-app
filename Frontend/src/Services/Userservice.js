@@ -48,7 +48,7 @@ export const updateProfile = async (user) => {
 
 
 export const changePassword = async passwords => {
-  await axios.put('http://localhost:8000/api/users/changePassword', passwords);
+  await axios.put('http://localhost:8000/api/users/forgotpassword', passwords);
 };
 
 // export const getAll = async searchTerm => {
